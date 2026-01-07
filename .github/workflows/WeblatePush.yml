@@ -1,0 +1,25 @@
+name: WeblatePush
+
+# SPDX-FileCopyrightText: 2026 Sangoma US Inc.
+# SPDX-License-Identifier: GPL-3.0-or-later
+
+# This file should be copied into each module that needs translating.
+# Place in the .github/workflows/ directory in the weblate/* branches.
+
+run-name: "WeblatePush ${{ github.run_number }}/${{ github.run_attempt }} (${{ github.event_name }}) by @${{ github.actor }}"
+
+on:
+  push:
+    branches:
+      - 'weblate/*'
+    paths:
+      - 'i18n/*'
+
+permissions:
+  contents: read
+  pull-requests: write
+  statuses: write
+
+jobs:
+  wrap:
+    uses: FreePBX/freepbx-ci-actions/.github/workflows/SharedWeblatePush.yml@main
